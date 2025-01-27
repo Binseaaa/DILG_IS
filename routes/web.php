@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Normal_View\Lgu\LguController;
 use App\Http\Controllers\Admin_View\Admin_UserController;
+use App\Http\Livewire\Normal\Legalopinions\Index;
 
 //Normal View
 use App\Http\Controllers\Admin_View\Admin_LguController;
@@ -154,6 +155,20 @@ Route::get('/faqs',[FaqsController::class, 'index'])->name('/faqs');
 Route::get('/latest_issuances',[Bohol_IssuancesController::class, 'index'])->name('/latest_issuances');
 Route::get('/latest_issuances/{id}',[Bohol_IssuancesController::class, 'show']);
 Route::get('/download/{file}',[Bohol_IssuancesController::class, 'download']);
+
+// Route::get('/test', function () {
+//     $livewireComponent = new Index();
+//     $livewireComponent->sendAllLegalOpinionsToTangkaraw();
+
+//     return 'Test completed!';
+// });
+Route::get('test', function () {
+    $livewireComponent = app(Index::class);
+    $livewireComponent->sendAllLegalOpinionsToTangkaraw();
+
+    return session('message', session('error', 'Test completed!'));
+});
+
 
 Route::get('/legal_opinions',[Legal_OpinionsController::class, 'index'])->name('/legal_opinions');
 

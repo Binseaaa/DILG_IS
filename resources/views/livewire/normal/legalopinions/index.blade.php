@@ -1,4 +1,6 @@
-<div>
+@extends('layouts.app')
+@section('content')
+    <div>
     <div class="mx-auto">
         <div class="col-md-12">
             <div class="card elevation-4">
@@ -18,15 +20,7 @@
                             <div wire:loading>
                                 Searching...
                             </div>
-                            <div class="d-flex align-items-center mt-3">
-                                <label for="category" class="mr-2">Category:</label>
-                                <select id="category" class="w-[50%]" style="padding: 7px;" wire:model="selectedCategory">
-                                    @foreach ($categories as $category)
-                                        <option value="{{ $category['value'] }}">{{ $category['text'] }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            
+                      
                         </div>
                     </div>
                     <div class="col-md-12">
@@ -41,19 +35,17 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @forelse ($opinions as $opinion)
+                                    @forelse ($legal_opinions as $opinion)
                                         <tr>
-                                            <td class="border px-4 py-2">{{ $loop->iteration + ($currentPage - 1) * 50 }}</td> 
+                                        
                                             <td class="border px-4 py-2">
                                                 <a href="{{ $opinion['link'] }}" target="_blank" class="text-blue-600 hover:underline">
                                                     {{ $opinion['title'] }}
                                                 </a>
-                                                @if (!empty($opinion['category']))
-                                                    <br>
-                                                    <span>{{ $opinion['category'] }}</span>
-                                                @endif
                                                 <br>
-                                                <strong>{{ $opinion['reference'] }}</strong> 
+                                                <span>{{ $opinion['category'] ?? '' }}</span>
+                                                <br>
+                                               <strong>{{ $opinion['reference'] }}</strong> 
                                             </td>
                                             <td class="border px-4 py-2 text-sm">{{ $opinion['date'] }}</td>
                                         </tr>
@@ -65,14 +57,10 @@
                                 </tbody>
                             </table>
                         </div>
-
-                        <!-- Pagination Links -->
-                        <div class="pagination-container mt-2">
-                            {{ $opinions->links() }}
-                        </div>                       
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+@endsection
