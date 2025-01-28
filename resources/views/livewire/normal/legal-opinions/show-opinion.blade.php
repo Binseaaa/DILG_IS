@@ -64,11 +64,24 @@
                                         <td class="border px-4 py-2 text-sm">{{ $opinion['date'] }}</td>
                                     </tr>
                                 @endforeach --}}
-                                <tr>
+                                <!-- <tr>
                                     <td class="px-4 py-2 text-sm"><a href="#" style="text-decoration: none;">Is the enactment of the Proposed ordinance within the authority of the city council, as outlined in RA 7160 or is it considered ultra vires</a></td>
                                     <td class="px-4 py-2 text-sm" style="color: rgb(176, 176, 176);">November 29, 2024</td>
                                 </tr>
-                                </tbody>
+                                </tbody> -->
+                                    @foreach(LegalOpinion::where('id', '!=', $opinion->id)->inRandomOrder()->take(5)->get() as $opinion)
+                                        <tr>
+                                            <td class="px-4 py-2 text-sm">
+                                                <a href="{{ route('opinions.showById', ['id' => $opinion->id]) }}" class="text-blue-500">
+                                                    » {{ $opinion->title }}
+                                                </a>
+                                            </td>
+                                            <td class="px-4 py-2 text-sm" style="color: gray;">
+                                                {{ $opinion->date }}
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>                                
                             </table>
                         </div>
                     </div>
