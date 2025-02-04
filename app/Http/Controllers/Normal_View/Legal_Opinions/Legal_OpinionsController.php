@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Normal_View\Legal_Opinions;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Str;
 use App\Models\LegalOpinion;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Storage;
@@ -49,6 +48,7 @@ class Legal_OpinionsController extends Controller
         $latestOpinion = LegalOpinion::latest()->first();
         $opinions = LegalOpinion::all();
 
+        // return view('livewire.normal.legalopinions.index', compact('latestOpinion', 'opinions'));
         return view('Normal_View.Legal_Opinions.legal_opinions', compact('latestOpinion', 'opinions'));
     }
 
@@ -56,5 +56,7 @@ class Legal_OpinionsController extends Controller
     {
         $opinion = LegalOpinion::findOrFail($id);  // Use findOrFail with id
         return view('Normal_View.Legal_Opinions.show_opinions', compact('opinion'));
+
+        
     }    
 }

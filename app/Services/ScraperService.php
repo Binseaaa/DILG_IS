@@ -19,7 +19,8 @@ class ScraperService
     public function scrapeLegalOpinions(string $url, $search = null)
     {
         $client = new Client([
-            'timeout' => 60,  // Increase timeout to 60 seconds (or higher as needed)
+            'timeout' => 60,
+            // 'verify' => false,
         ]);
         $allOpinions = [];
         $categories = [];

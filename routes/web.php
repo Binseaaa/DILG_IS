@@ -1,3 +1,5 @@
+web route
+
 <?php
 
 use Carbon\Carbon;
@@ -162,6 +164,8 @@ Route::get('/download/{file}',[Bohol_IssuancesController::class, 'download']);
 
 //     return 'Test completed!';
 // });
+
+
 Route::get('test', function () {
     $livewireComponent = app(Index::class);
     $livewireComponent->sendAllLegalOpinionsToTangkaraw();
@@ -171,8 +175,7 @@ Route::get('test', function () {
 
 
 Route::get('/legal_opinions',[Legal_OpinionsController::class, 'index'])->name('/legal_opinions');
-Route::get('/legal-opinion/{slug}', [Legal_OpinionsController::class, 'show'])->name('legal-opinion.show');
-
+Route::get('/legal-opinions/{id}', [Legal_OpinionsController::class, 'showById'])->name('opinions.showById');
 
 Route::get('/downloadable_files',[DownloadablesController::class, 'index'])->name('/downloadable_files');
 Route::get('/download_downloadables/{file}',[DownloadablesController::class, 'download_downloadables']);
@@ -247,3 +250,9 @@ Route::get('/field_officers',[Field_OfficersController::class, 'index'])->name('
 //End here
 
 
+Route::get('/test-scrape', function () {
+    $scraperService = app(\App\Services\ScraperService::class);
+    $url = 'https://dilg.gov.ph/legal-opinions-archive/';
+    $scraperService->scrapeLegalOpinions($url);
+    return 'Scraping completed!';
+});
