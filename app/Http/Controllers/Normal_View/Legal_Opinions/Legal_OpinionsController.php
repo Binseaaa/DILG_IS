@@ -56,7 +56,5 @@ class Legal_OpinionsController extends Controller
     {
         $opinion = LegalOpinion::findOrFail($id);  // Use findOrFail with id
         return view('Normal_View.Legal_Opinions.show_opinions', compact('opinion'));
-
-        
     }    
 }
