@@ -23,12 +23,12 @@ class LegalOpinionService
         // Map data
         $legalOpinionsData = $legalOpinions->map(function ($legalOpinion) {
             return [
-                'title' => $legalOpinion->title,
-                'link' => $legalOpinion->link,
-                'category' => $legalOpinion->category,
-                'reference' => $legalOpinion->reference,
-                'date' => $legalOpinion->date,
-                'download_link' => $legalOpinion->download_link,
+                'title' => (string) $legalOpinion->title,
+                'link' => (string) $legalOpinion->link,
+                'category' => (string) $legalOpinion->category,
+                'reference' => (string) $legalOpinion->reference,
+                'date' => (string) $legalOpinion->date,
+                'download_link' => (string) $legalOpinion->download_link,
             ];
         })->toArray();
 

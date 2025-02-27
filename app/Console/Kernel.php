@@ -24,6 +24,7 @@ class Kernel extends ConsoleKernel
         })->everyMinute();
 
         $schedule->call(function () {
+            sleep(60);
             $sendLegalOpinions = app(LegalOpinionService::class); // Replace with your actual controller
             $sendLegalOpinions->sendAllLegalOpinionsToTangkaraw();
         })->everyMinute();
